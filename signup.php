@@ -12,15 +12,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <form method="post" action="insert.php">
-        <input type="text" name="fn" placeholder="First Name">
-        <input type="text" name="ln" placeholder="Last Name">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <input type="password" placeholder="Confirm password">
-        <input type="submit" value="Sign up">
-    </form>
+     <!--introduction-->
+    <header class="bg-white w-full h-24 flex  justify-between p-6 border-b-4 border-greener ">
+        <img src="images/logo-girls.png" alt="technovation girls">
+        <h1 class="text-3xl text-greener font-bold">Technovation pitch Event 2023</h1>
+        <img src="images/op.png" class="" alt="o & p logo">
+    </header>
+
+    <!-- the form container-->
+    <div class="flex flex-col w-full h-screen bg-blue p-12">
+        <form method="post" action="insert.php" class="flex flex-col gap-12 w-1/4  p-6 border-4 border-greener rounded-xl self-center">
+            <input type="text" class="p-4 rounded" name="fn" placeholder="First Name" required>
+            <input type="text" class="p-4 rounded" name="ln" placeholder="Last Name" required>
+            <input type="email" class="p-4 rounded" name="email" placeholder="Email" required>
+            <input type="password" class="p-4 rounded" name="password" placeholder="Password" required>
+            <input type="password" class="p-4 rounded" name="cfmpass" placeholder="Confirm password" oninput="confirmPass()" required>
+            
+            <button type="submit" id="signbtn" class="p-4 bg-greener rounded text-white text-xl font-bold cursor-not-allowed" disabled>Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        let pass = document.getElementsByName("password").value;
+        let cfrpass = document.getElementsByName("cfmpass").value;
+        let btn = document.getElementById("signbtn");
+
+        function confirmPass(){
+            if (pass === cfrpass){
+                btn.disabled = false;
+                btn.style.cursor = "pointer";
+            }
+        }
+
+    </script>
 </body>
 </html>
