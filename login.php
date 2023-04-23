@@ -1,4 +1,5 @@
 <?php
+    session_start();
     //including a file that connects to the server and the database
     include "connect.php";
 
@@ -12,6 +13,7 @@
     );
     $rows = mysqli_num_rows($query);
     if($rows == 1){
+        $_SESSION['email'] = $email;
         header("location: dashboard.php");
     }
     else{
