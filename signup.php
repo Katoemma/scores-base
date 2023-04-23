@@ -28,20 +28,24 @@
             <input type="text" class="p-4 rounded" name="fn" placeholder="First Name" required>
             <input type="text" class="p-4 rounded" name="ln" placeholder="Last Name" required>
             <input type="email" class="p-4 rounded" name="email" placeholder="Email" required>
-            <input type="password" class="p-4 rounded" name="password" placeholder="Password" required>
-            <input type="password" class="p-4 rounded" name="cfmpass" placeholder="Confirm password" oninput="confirmPass()" required>
+            <input type="password" class="p-4 rounded" name="password" id="pass" placeholder="Password" required>
+            <input type="password" class="p-4 rounded" name="cfmpass" id="conf-pass" placeholder="Confirm password" oninput="confirmPass()" required>
             
             <button type="submit" id="signbtn" class="p-4 bg-greener rounded text-white text-xl font-bold cursor-not-allowed" disabled>Sign Up</button>
         </form>
     </div>
 
     <script>
-        let pass = document.getElementsByName("password").value;
-        let cfrpass = document.getElementsByName("cfmpass").value;
-        let btn = document.getElementById("signbtn");
-
         function confirmPass(){
-            if (pass === cfrpass){
+            let pass = document.getElementById("pass").value;
+            let cfrpass = document.getElementById("conf-pass").value;
+            let btn = document.getElementById("signbtn");
+
+            if (pass != cfrpass){
+                btn.disabled = true;
+                btn.style.cursor = "not-allowed";
+            }
+            else{
                 btn.disabled = false;
                 btn.style.cursor = "pointer";
             }
