@@ -1,5 +1,9 @@
 <?php  
-    print "Welcome!";
+    include "connect.php";
+    $qry = mysqli_query($con, "SELECT * FROM admin");
+    if(mysqli_num_rows($qry) < 1){
+        header("Location: signup.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +15,7 @@
 </head>
 <body>
     <form method="post" action="login.php">
-        <input type="text" name="email" placeholder="email">
+        <input type="email" name="email" placeholder="email">
         <input type="password" name="password" placeholder="password">
         <input type="submit" value="Login">
     </form>
