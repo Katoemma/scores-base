@@ -24,7 +24,27 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <a href="logout.php">Logout</a>
-    <h1>Welcome, <?php print $fn." ".$ln;?>!</h1>
+    <!--introduction-->
+    <header class="bg-white w-full h-24 flex  justify-between p-6 border-b-4 border-greener ">
+        <img src="images/logo-girls.png" alt="technovation girls">
+        <h1 class="text-3xl text-greener font-bold">Technovation pitch Event 2023</h1>
+        
+        <!--profile dropdown-->
+        <div class="relative inline-block group">
+            <div class="flex items-center gap-2">
+                <img src="images/Assets/account icon.png" class="w-12" alt="icon">
+                <h1 class="text-xl cursor-pointer"><?php print $fn." ".$ln;?></h1> 
+                <img src="images/Assets/expand more.png" class="w-12" alt="icon">
+            </div>
+
+            <!--dropdown content-->
+            <div class="hidden absolute group-hover:block p-4 bg-lightBlue border-2 border-blue rounded w-full">
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-xl">Do you want to Logout?</h1>
+                    <a href="logout.php" class="w-full"><button class="bg-greener px-8 py-2 text-white font-bold w-full border-2 border-greener rounded">Logout</button></a>
+                </div>
+            </div>
+        </div>
+    </header>
 </body>
 </html>
