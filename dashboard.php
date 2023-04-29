@@ -47,6 +47,7 @@
         </div>
     </header>
     <div>
+        <br><br>
         <label for="">Add Judge</label>
         <form method="post" action="addJudge.php">
             <input type="text" name="fname" placeholder="First Name" required>
@@ -54,6 +55,7 @@
             <input type="email" name="email" placeholder="Email" required>
             <input type="submit" value="Add Judge">
         </form>
+        <br><br>
         <label for="">Add School</label>
         <form method="post" action="addSchool.php">
             <input type="text" name="sname" placeholder="School Name" required>
@@ -66,17 +68,18 @@
             </select>
             <input type="submit" value="Add School">
         </form>
+        <br><br>
         <label for="">Add Team</label>
-        <form method="post" action="addSchool.php">
+        <form method="post" action="addTeam.php">
             <input type="text" name="tname" placeholder="Team Name" required>
             <select name="division" id="" required>
                 <option value="">Select Division</option>
-                <option value="beginner">Beginner</option>
-                <option value="junior">Junior</option>
-                <option value="senior">Senior</option>
+                <option value="B">Beginner</option>
+                <option value="J">Junior</option>
+                <option value="S">Senior</option>
             </select>
             <select name="school" id="" required>
-            <option value="">Select Division</option>
+            <option value="">Select School</option>
                 <?php
                     $qy = mysqli_query($con, "SELECT * FROM school");
                     while($ay = mysqli_fetch_array($qy)){
@@ -91,6 +94,41 @@
             </select>
             <input type="submit" value="Add Team">
         </form>
+        <br><br>
+        <label for="">Add Category</label>
+        <form method = "post" action="addCategory.php">
+            <input type="text" name="cname" placeholder="Category Name" required>
+            <textarea name="description" id="" cols="30" rows="5" placeholder="Category Description"></textarea>
+            <input type="submit" value="Add Category">
+        </form>
+        <br><br>
+        <label for="">Add Rubric Item</label>
+        <form method = "post" action="addRubric.php">
+            <input type="text" name="item" placeholder="Rubric Item Name" required>
+            <textarea name="description" id="" cols="30" rows="10" placeholder="Item Description"></textarea>
+            <select name="division" id="" required>
+                <option value="">Select Division</option>
+                <option value="B">Beginner</option>
+                <option value="J">Junior</option>
+                <option value="S">Senior</option>
+            </select>
+            <select name="category" id="" required>
+            <option value="">Select Category</option>
+                <?php
+                    $cq = mysqli_query($con, "SELECT * FROM category");
+                    while($ca = mysqli_fetch_array($cq)){
+                        $ci = $ca['id'];
+                        $cn = $ca['name'];
+                        ?>
+                        <option value="<?php print $ci;?>"><?php print $cn;?></option>
+                        <?php
+                    }
+                ?>
+            </select>
+            <input type="number" name="score" placeholder="Score" required>
+            <input type="submit" value="Add Item">
+        </form>
+        
     </div>
 </body>
 </html>

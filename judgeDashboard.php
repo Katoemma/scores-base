@@ -7,9 +7,10 @@
         include "connect.php";
         $e = $_SESSION['email'];
         $q = mysqli_query($con, 
-            "SELECT fname, lname FROM judge WHERE email = '$e'"
+            "SELECT id, fname, lname FROM judge WHERE email = '$e'"
         ) or die("Failed to fetch user data: ".mysqli_error($con)); // the or die() method is executed in case of an error
         $a = mysqli_fetch_array($q);
+        $j_id = $a['id'];
         $fn = $a['fname'];
         $ln = $a['lname'];
     }
@@ -20,7 +21,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Judge Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -47,7 +48,54 @@
         </div>
     </header>
     <div>
-        
+        <label for="">Select division to enter a team score</label>
+        <form method="post" action="judgeDashboard.php">
+        <select name="division" id="" required>
+                <option value="">Select Division</option>
+                <option value="B">Beginner</option>
+                <option value="J">Junior</option>
+                <option value="S">Senior</option>
+            </select>
+            <input type="submit" name="confirm" value="Confirm">
+        </form>
+        <?php
+            if(isset($_POST['confirm'])){
+                $div = $_POST['division'];
+                if($div == 'B')
+                    $rubric = 'beginner';
+                elseif($div == 'J')
+                    $rubric = 'junior';
+                elseif($div == 'S')
+                    $rubric = 'senior';
+                $score_table = $rubric."_scores";
+                ?>
+                <form method="post" action="judgeDashboard.php">
+                    <select name="item" id="" required>
+                        <option value="">Select Rubric Item</option>
+                        <?php
+                            $qy = mysqli_query($con, "SELECT * FROM $rubric");
+                            while($ay = mysqli_fetch_array($qy)){
+                                $r_id = $ay['id'];
+                                $desc = $ay['description'];
+                                ?>
+                                <option value="<?php print $r_id;?>"><?php print $desc;?></option>
+                                <?php
+                            }
+                        ?>
+                    </select>
+                    <input type="number" name="score" placeholder="Score" required>
+                    <input type="submit" name="subScore" value="Submit">
+                </form>
+                <?php
+            }
+            if(isset($_POST['subScore'])){
+                $rubric_item = $_POST['item'];
+                $rubric_score = $_POST['score'];
+                mysqli_query($con, "INSERT INTO $score_table (rubric, judge, score) 
+                VALUES('$rubric_item', '$j_id', '$rubric_score')") or die("Failed to add score: ".mysqli_error($con));
+                print "Score added successfully!";
+            }
+        ?>
     </div>
 </body>
 </html>
