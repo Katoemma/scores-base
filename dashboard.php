@@ -54,6 +54,43 @@
             <input type="email" name="email" placeholder="Email" required>
             <input type="submit" value="Add Judge">
         </form>
+        <label for="">Add School</label>
+        <form method="post" action="addSchool.php">
+            <input type="text" name="sname" placeholder="School Name" required>
+            <input type="text" name="district" placeholder="District" required>
+            <select name="region" id="" required>
+                <option value="Central Region">Central Region</option>
+                <option value="Western Region">Western Region</option>
+                <option value="Northern Region">Northern Region</option>
+                <option value="Eastern Region">Eastern Region</option>
+            </select>
+            <input type="submit" value="Add School">
+        </form>
+        <label for="">Add Team</label>
+        <form method="post" action="addTeam.php">
+            <input type="text" name="tname" placeholder="Team Name" required>
+            <select name="division" id="" required>
+                <option value="">Select Division</option>
+                <option value="B">Beginner</option>
+                <option value="J">Junior</option>
+                <option value="S">Senior</option>
+            </select>
+            <select name="school" id="" required>
+                <option value="">Select School</option>
+                <?php
+                    $qy = mysqli_query($con, "SELECT * FROM school");
+                    while($ay = mysqli_fetch_array($qy)){
+                        $si = $ay['id'];
+                        $s = $ay['name'];
+                        $d = $ay['district'];
+                        ?>
+                        <option value="<?php print $si;?>"><?php print $s." | ".$d;?></option>
+                        <?php
+                    }
+                ?>
+            </select>
+            <input type="submit" value="Add Team">
+        </form>
     </div>
 </body>
 </html>
