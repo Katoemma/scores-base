@@ -54,6 +54,5 @@
             <input type="email" name="email" placeholder="Email" required>
             <input type="submit" value="Add Judge">
         </form>
-    </div>
 </body>
 </html>
