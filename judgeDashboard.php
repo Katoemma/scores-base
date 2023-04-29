@@ -7,7 +7,7 @@
         include "connect.php";
         $e = $_SESSION['email'];
         $q = mysqli_query($con, 
-            "SELECT fname, lname FROM admin WHERE email = '$e'"
+            "SELECT fname, lname FROM judge WHERE email = '$e'"
         ) or die("Failed to fetch user data: ".mysqli_error($con)); // the or die() method is executed in case of an error
         $a = mysqli_fetch_array($q);
         $fn = $a['fname'];
@@ -47,13 +47,7 @@
         </div>
     </header>
     <div>
-        <label for="">Add Judge</label>
-        <form method="post" action="addJudge.php">
-            <input type="text" name="fname" placeholder="First Name" required>
-            <input type="text" name="lname" placeholder="Last Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="submit" value="Add Judge">
-        </form>
+        
     </div>
 </body>
 </html>
