@@ -17,6 +17,17 @@
         header("location: dashboard.php");
     }
     else{
-        header("location: index.php");
+
+        $qry = mysqli_query($con, 
+        "SELECT * FROM judge WHERE email = '$email' AND password = '$pass'"
+        );
+        $rws = mysqli_num_rows($qry);
+        if($rws == 1){
+            $_SESSION['email'] = $email;
+            header("location: judgeDashboard.php");
+        }
+        else{
+            header("location: index.php");
+        }
     }
 ?>
