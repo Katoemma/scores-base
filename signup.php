@@ -44,10 +44,13 @@
             if (pass != cfrpass){
                 btn.disabled = true;
                 btn.style.cursor = "not-allowed";
+                btn.style.backgroundColor = "#ccffcc";
             }
             else{
                 btn.disabled = false;
                 btn.style.cursor = "pointer";
+                btn.style.backgroundColor = "#009900";
+               
             }
         }
 
