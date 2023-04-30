@@ -60,16 +60,35 @@
         </form>
         <?php
             if(isset($_POST['confirm'])){
+                $mscore = 5;
+                $comment = ["Not there yet","Getting there","Good","Impressive","Amazing"];
                 $div = $_POST['division'];
-                if($div == 'B')
-                    $rubric = 'beginner';
+                if($div == 'B'){
+                    $rubric = 'beginner'; 
+                    $mscore = 3;
+                    $comment[1] = "Good";
+                    $comment[2] = "Amazing";
+                }
                 elseif($div == 'J')
-                    $rubric = 'junior';
+                    $rubric = 'junior'; 
                 elseif($div == 'S')
                     $rubric = 'senior';
                 $score_table = $rubric."_scores";
                 ?>
-                <form method="post" action="judgeDashboard.php">
+                <form method="post" action="addScore.php">
+                    <select name="team" id="" required>
+                        <option value="">Select Team</option>
+                        <?php
+                            $qt = mysqli_query($con, "SELECT * FROM team WHERE division = '$div'");
+                            while($at = mysqli_fetch_array($qt)){
+                                $t_id = $at['id'];
+                                $tn = $at['name'];
+                                ?>
+                                <option value="<?php print $t_id;?>"><?php print $tn;?></option>
+                                <?php
+                            }
+                        ?>
+                    </select>
                     <select name="item" id="" required>
                         <option value="">Select Rubric Item</option>
                         <?php
@@ -83,17 +102,21 @@
                             }
                         ?>
                     </select>
-                    <input type="number" name="score" placeholder="Score" required>
+                    <select name="score" id="" required>
+                        <option value="">Select a Score</option>
+                        <?php
+                            for($x=0; $x < $mscore; $x ++){
+                                $scr = $x + 1;
+                                ?>
+                                <option value="<?php print $scr;?>"><?php print $scr." - ".$comment[$x];?></option>
+                                <?php
+                            }
+                        ?>
+                    </select>
+                    <input type="text" name="score-table" value="<?php print $score_table;?>" hidden>
                     <input type="submit" name="subScore" value="Submit">
                 </form>
                 <?php
-            }
-            if(isset($_POST['subScore'])){
-                $rubric_item = $_POST['item'];
-                $rubric_score = $_POST['score'];
-                mysqli_query($con, "INSERT INTO $score_table (rubric, judge, score) 
-                VALUES('$rubric_item', '$j_id', '$rubric_score')") or die("Failed to add score: ".mysqli_error($con));
-                print "Score added successfully!";
             }
         ?>
     </div>
