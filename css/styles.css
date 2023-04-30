@@ -532,6 +532,10 @@ video {
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .hidden {
   display: none;
 }
@@ -635,11 +639,6 @@ video {
 .bg-lightBlue {
   --tw-bg-opacity: 1;
   background-color: rgb(204 224 255 / var(--tw-bg-opacity));
-}
-
-.bg-lightGreen {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 255 51 / var(--tw-bg-opacity));
 }
 
 .bg-white {
