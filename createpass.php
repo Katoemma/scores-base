@@ -16,6 +16,8 @@
     //update the judge table in the db with the password value
     mysqli_query($con, "UPDATE judge SET password = '$pass' WHERE id = '$i'") 
     or die("Failed to create password: ".mysqli_error($con));
-
-    print "Judge added Successfully!<br>Pass: ".$pass;
 ?>
+<script>
+    alert('Judge added Successfully! \n\nPass: <?php print $pass?>');
+    window.location.replace('dashboard.php');
+</script>

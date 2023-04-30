@@ -9,9 +9,22 @@
     $fn = $_POST['fname'];
     $ln = $_POST['lname'];
     $em = $_POST['email'];
-    //inserting data into the database
-    mysqli_query($con, "INSERT INTO judge (fname, lname, email) VALUES('$fn','$ln','$em')") 
-    or die("Failed to add Judge: ".mysqli_error($con));
-    print "Judge info added !";
-    header("location: createpass.php");
+    //chech is judge already exists before creating an new one
+    $jqry = mysqli_query($con, "SELECT * FROM judge WHERE email = '$em'") or die("Failed to get Judge:".mysqli_error($con));
+    if(mysqli_num_rows($jqry) < 1){
+        //inserting data into the database
+        mysqli_query($con, "INSERT INTO judge (fname, lname, email) VALUES('$fn','$ln','$em')") 
+        or die("Failed to add Judge: ".mysqli_error($con));
+        print "Judge info added !";
+        header("location: createpass.php");
+    }
+    else{
+        //header("location: dashboard.php");
+        ?><script>
+            alert('Judge already registered!');
+            window.location.replace('dashboard.php');
+        </script>
+        <?php
+    }
+    
 ?>
