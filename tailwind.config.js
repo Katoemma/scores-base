@@ -25,6 +25,7 @@ module.exports = {
       "greener": "#009900",
       "lightBlue": "#cce0ff",
       "lightGreen": "#33ff33",
+      "grayish": "#f2f2f2",
     },
     extend: {},
   },

@@ -20,12 +20,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schools</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!--introduction-->
-    <header class="bg-white w-full h-24 flex  justify-between p-6 border-b-4 border-greener ">
+    <header class="sticky top-0 z-30 bg-white w-full h-24 flex  justify-between p-6 border-b-4 border-greener ">
         <img src="images/logo-girls.png" alt="technovation girls">
         <h1 class="text-3xl text-greener font-bold">Technovation pitch Event 2023</h1>
         
@@ -61,7 +61,7 @@
                     <img src="images/Assets/teams.png" class="w-8"  alt=""> Teams
                 </a>
                 <hr class="bg-white">
-                <a href="#" class="flex gap-4 w-full text-white  text-xl font-black bg-greener p-3 bg-blue">
+                <a href="#" class="flex gap-4 w-full text-white  text-xl font-black p-3 bg-blue">
                     <img src="images/Assets/schools.png" class="w-8" alt=""> Schools
                 </a>
                 <hr class="bg-white">
