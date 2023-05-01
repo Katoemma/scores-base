@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Schools</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -53,7 +53,7 @@
             <!--buttons container-->
             <nav class="flex flex-col w-full ">
                 <hr class="bg-white">
-                <a href="#" class="flex gap-4 text-center w-full text-xl font-black text-white p-3 bg-blue">
+                <a href="dashboard.php" class="flex gap-4 text-center w-full text-xl font-black text-white p-3 hover:bg-blue">
                     <img src="images/Assets/dashborad.png" class="w-8" alt=""> Dashboard
                 </a>
                 <hr class="bg-white">
@@ -61,7 +61,7 @@
                     <img src="images/Assets/teams.png" class="w-8"  alt=""> Teams
                 </a>
                 <hr class="bg-white">
-                <a href="dashboard.schools.php" class="flex gap-4 w-full text-white  text-xl font-black bg-greener p-3 hover:bg-blue">
+                <a href="#" class="flex gap-4 w-full text-white  text-xl font-black bg-greener p-3 bg-blue">
                     <img src="images/Assets/schools.png" class="w-8" alt=""> Schools
                 </a>
                 <hr class="bg-white">
@@ -81,7 +81,55 @@
 
         <!--main content-->
         <div class="flex justify-between w-full h-screen ml-96 p-6 bg-grayish">
-            
+            <!--teams and judges tables -->
+            <div class="flex flex-col gap-4">
+                <!--Teams container(table)-->
+                <table class="table-auto border-2 border-grayish bg-white rounded-2xl">
+                    <tr class="bg-blue p-2 w-full rounded">
+                        <th class="text-xl font-bold">ID</th>
+                        <th class="text-xl font-bold">Scool Name</th>
+                        <th class="text-xl font-bold">District</th>
+                        <th class="text-xl font-bold">Region</th>
+                    <tr>
+                    <tbody>
+                        <?php
+                            $s_qry = mysqli_query($con, "SELECT * FROM school") or die("failed to fetch teams: ".mysqli_error($con));
+                            while($s_ary = mysqli_fetch_array($s_qry)){
+                                $id = $s_ary['id'];
+                                $sn = $s_ary['name'];
+                                $sd = $s_ary['district'];
+                                $sr = $s_ary['region'];
+                                ?>
+                                <tr>
+                                    <td class="text-lg"><?php print $id;?></td>
+                                    <td class="text-lg"><?php print $sn;?></td>
+                                    <td class="text-lg"><?php print $sd;?></td>
+                                    <td class="text-lg"><?php print $sr;?></td>
+                                </tr>
+                                <?php
+                            }
+                        ?>  
+                    </tbody>
+                    
+                </table>
+
+            </div>
+            <!--Team auto score positioning-->
+            <div class="flex flex-col">
+                <label for="">Add School</label>
+                <form method="post" action="addSchool.php">
+                    <input type="text" name="sname" placeholder="School Name" required>
+                    <input type="text" name="district" placeholder="District" required>
+                    <select name="region" id="" required>
+                        <option value="Central Region">Central Region</option>
+                        <option value="Western Region">Western Region</option>
+                        <option value="Northern Region">Northern Region</option>
+                        <option value="Eastern Region">Eastern Region</option>
+                    </select>
+                    <input type="submit" value="Add School">
+                </form>
+                
+            </div>
         </div>
     </main>
 </body>
