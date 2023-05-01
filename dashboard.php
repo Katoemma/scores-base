@@ -25,7 +25,7 @@
 </head>
 <body>
     <!--introduction-->
-    <header class="bg-white w-full h-24 flex  justify-between p-6 border-b-4 border-greener ">
+    <header class="sticky top-0 z-30 bg-white w-full h-24 flex  justify-between p-6 border-b-4 border-greener ">
         <img src="images/logo-girls.png" alt="technovation girls">
         <h1 class="text-3xl text-greener font-bold">Technovation pitch Event 2023</h1>
         

@@ -20,12 +20,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teams</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!--introduction-->
-    <header class="bg-white w-full h-24 flex  justify-between p-6 border-b-4 border-greener ">
+    <header class="sticky top-0 z-30 bg-white w-full h-24 flex  justify-between p-6 border-b-4 border-greener ">
         <img src="images/logo-girls.png" alt="technovation girls">
         <h1 class="text-3xl text-greener font-bold">Technovation pitch Event 2023</h1>
         
@@ -57,7 +57,7 @@
                     <img src="images/Assets/dashborad.png" class="w-8" alt=""> Dashboard
                 </a>
                 <hr class="bg-white">
-                <a href="#" class="flex gap-4 w-full text-white  text-xl font-black bg-greener p-3 bg-blue">
+                <a href="#" class="flex gap-4 w-full text-white  text-xl font-black p-3 bg-blue">
                     <img src="images/Assets/teams.png" class="w-8"  alt=""> Teams
                 </a>
                 <hr class="bg-white">
@@ -128,121 +128,34 @@
                     
                 </table>
 
-                <!-- Judges table -->
-                <table class=" border-2 border-grayish rounded-xl">
-                    <tr class="bg-reddish p-4 rounded-xl text-white">
-                        <th class="text-xl font-bold">ID</th>
-                        <th class="text-xl font-bold">Name</th>
-                        <th class="text-xl font-bold">email</th>
-                        <th class="text-xl font-bold">Password</th>
-                    <tr>
-
-                    <tbody>
-                        <tr>
-                            <td class="text-lg">01</td>
-                            <td class="text-lg">Kato Emmanuel</td>
-                            <td class="text-lg">Kato@test.org</td>
-                            <td class="text-lg">**********</td>
-                        </tr>
-                        <tr>
-                            <td class="text-lg">02</td>
-                            <td class="text-lg">Kato Emmanuel</td>
-                            <td class="text-lg">Kato@test.org</td>
-                            <td class="text-lg">**********</td>
-                        </tr>
-                        <tr>
-                            <td class="text-lg">03</td>
-                            <td class="text-lg">Kato Emmanuel</td>
-                            <td class="text-lg">Kato@test.org</td>
-                            <td class="text-lg">**********</td>
-                        </tr>
-                        <tr>
-                            <td class="text-lg">04</td>
-                            <td class="text-lg">Kato Emmanuel</td>
-                            <td class="text-lg">Kato@test.org</td>
-                            <td class="text-lg">**********</td>
-                        </tr>
-                    </tbody>
-                </table>
-
             </div>
             <!--Team auto score positioning-->
             <div class="flex flex-col">
                 <label for="">Add Team</label>
-                <form method="post" action="addTeam.php">
-                    <input type="text" name="tname" placeholder="Team Name" required>
-                    <select name="division" id="" required>
+                <form method="post" action="addTeam.php" class="flex gap-2">
+                    <input type="text" name="tname" placeholder="Team Name" class="bg-white rounded-xl" required>
+                    <select name="division" class="bg-white rounded-xl" id="" required>
                         <option value="">Select Division</option>
                         <option value="B">Beginner</option>
                         <option value="J">Junior</option>
                         <option value="S">Senior</option>
                     </select>
-                    <select name="school" id="" required>
-                    <option value="">Select School</option>
-                        <?php
-                            $qy = mysqli_query($con, "SELECT * FROM school");
-                            while($ay = mysqli_fetch_array($qy)){
-                                $si = $ay['id'];
-                                $s = $ay['name'];
-                                $d = $ay['district'];
-                                ?>
-                                <option value="<?php print $si;?>"><?php print $s." | ".$d;?></option>
-                                <?php
-                            }
-                        ?>
+                    <select name="school" class="bg-white rounded-xl" id="" required>
+                        <option value="">Select School</option>
+                            <?php
+                                $qy = mysqli_query($con, "SELECT * FROM school");
+                                while($ay = mysqli_fetch_array($qy)){
+                                    $si = $ay['id'];
+                                    $s = $ay['name'];
+                                    $d = $ay['district'];
+                                    ?>
+                                    <option value="<?php print $si;?>"><?php print $s." | ".$d;?></option>
+                                    <?php
+                                }
+                            ?>
                     </select>
-                    <input type="submit" value="Add Team">
+                    <input type="submit" value="Add Team" class="bg-greener font-bold text-xl text-white p-2 px-4 rounded-xl cursor-pointer">
                 </form>
-                <h1 class="text-2xl font-bold">Auto Score Grading</h1>
-                <table class="table-auto border-2 border-grayish bg-white rounded-2xl">
-                    <tr class="bg-blue p-2 w-full rounded">
-                        <th class="text-xl font-bold">Team</th>
-                        <th class="text-xl font-bold">Division</th>
-                        <th class="text-xl font-bold">pitch</th>
-                        <th class="text-xl font-bold">District</th>
-                        <th class="text-xl font-bold">Region</th>
-                    <tr>
-                    <tbody>
-                        <tr>
-                            <td class="text-lg">The curious</td>
-                            <td class="text-lg">Junior</td>
-                            <td class="text-lg">Oaks of Righteousness</td>
-                            <td class="text-lg">Kiryandongo</td>
-                            <td class="text-lg">Western Region</td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-lg">The curious</td>
-                            <td class="text-lg">Junior</td>
-                            <td class="text-lg">Oaks of Righteousness</td>
-                            <td class="text-lg">Kiryandongo</td>
-                            <td class="text-lg">Western Region</td>
-                        </tr>
-
-                        <tr>
-                            <td class="text-lg">The curious</td>
-                            <td class="text-lg">Junior</td>
-                            <td class="text-lg">Oaks of Righteousness</td>
-                            <td class="text-lg">Kiryandongo</td>
-                            <td class="text-lg">Western Region</td>
-                        </tr>
-                        <tr>
-                            <td class="text-lg">The curious</td>
-                            <td class="text-lg">Junior</td>
-                            <td class="text-lg">Oaks of Righteousness</td>
-                            <td class="text-lg">Kiryandongo</td>
-                            <td class="text-lg">Western Region</td>
-                        </tr>
-                        <tr>
-                            <td class="text-lg">The curious</td>
-                            <td class="text-lg">Junior</td>
-                            <td class="text-lg">Oaks of Righteousness</td>
-                            <td class="text-lg">Kiryandongo</td>
-                            <td class="text-lg">Western Region</td>
-                        </tr>
-                    </tbody>
-                    
-                </table>
             </div>
         </div>
     </main>
