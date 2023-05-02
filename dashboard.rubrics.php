@@ -126,42 +126,40 @@
                 <?php
                     $divisions = ["beginner", "junior", "senior"];
                     foreach($divisions as $division){
-                        $d_query = mysqli_query($con, "SELECT")
                         ?>
-                        <table class="table-auto border-2 border-grayish bg-white rounded-2xl">
-                            <tr class="bg-blue p-2 w-full rounded">
-                                <th class="text-xl font-bold">ID</th>
-                                <th class="text-xl font-bold">Judge Name</th>
-                                <th class="text-xl font-bold">Email</th>
-                                <th class="text-xl font-bold">Password</th>
-                            <tr>
-                            <tbody>
-                                <?php
-                                    $j_qry = mysqli_query($con, "SELECT * FROM judge") or die("failed to fetch teams: ".mysqli_error($con));
-                                    while($j_ary = mysqli_fetch_array($j_qry)){
-                                        $id = $j_ary['id'];
-                                        $fn = $j_ary['fname'];
-                                        $ln = $j_ary['lname'];
-                                        $je = $j_ary['email'];
-                                        $jp = $j_ary['password'];
-                                        ?>
-                                        <tr>
-                                            <td class="text-lg"><?php print $id;?></td>
-                                            <td class="text-lg"><?php print $fn." ".$ln;?></td>
-                                            <td class="text-lg"><?php print $je;?></td>
-                                            <td class="text-lg"><?php print $jp;?></td>
-                                        </tr>
-                                        <?php
-                                    }
-                                ?>  
-                            </tbody>
-                            
-                        </table>
+                        <h1><?php print $division;?> rubric:</h1>
                         <?php
+                        $c_query = mysqli_query($con, "SELECT * FROM category");
+                        while($c_array = mysqli_fetch_array($c_query)){
+                            $cid = $c_array['id'];
+                            $cn = $c_array['name'];
+                            $cd = $c_array['description'];
+                            ?>
+                            <h2><?php print $cn.":-".$cd;?></h2>
+                            <table class="table-auto border-2 border-grayish bg-white rounded-2xl">
+                                <tbody>
+                                <?php
+                                $r_query = mysqli_query($con, "SELECT * FROM $division WHERE category = '$cid'")or die("failed to fetch rubrics: ".mysqli_error($con));
+                                while($r_array = mysqli_fetch_array($r_query)){
+                                    $id = $r_array['id'];
+                                    $desc = $r_array['description'];
+                                    $score = $r_array['score'];
+                                    ?>
+                                    <tr>
+                                        <td class="text-lg"><?php print $id;?></td>
+                                        <td class="text-lg"><?php print $desc;?></td>
+                                        <td class="text-lg"><?php print $score;?></td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                            <?php
+                        }
                     }
                 ?>
             </div>
-            
         </div>
     </main>
 </body>

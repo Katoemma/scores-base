@@ -13,5 +13,5 @@
     mysqli_query($con, "INSERT INTO school (name, district, region) VALUES('$s','$d','$r')") 
     or die("Failed to add School: ".mysqli_error($con));
     print "School info added !";
-    header("location: dashboard.php");
+    header("location: dashboard.schools.php");
 ?>

@@ -20,5 +20,5 @@
     mysqli_query($con, "INSERT INTO $table (item, description, category, score) VALUES('$ri', '$id','$rc', '$is')") 
         or die("Failed to add Rubric Item: ".mysqli_error($con));
     
-    header("Location: dashboard.php");
+    header("Location: dashboard.rubrics.php");
 ?>

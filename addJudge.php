@@ -22,7 +22,7 @@
         //header("location: dashboard.php");
         ?><script>
             alert('Judge already registered!');
-            window.location.replace('dashboard.php');
+            window.location.replace('dashboard.judges.php');
         </script>
         <?php
     }

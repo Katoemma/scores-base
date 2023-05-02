@@ -10,5 +10,5 @@
 
     mysqli_query($con, "INSERT INTO category (name, description) VALUES('$cn', '$cd')") 
     or die("Failed to add Category: ".mysqli_error($con));
-    header("Location: dashboard.php");
+    header("Location: dashboard.rubrics.php");
 ?>

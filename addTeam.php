@@ -13,5 +13,5 @@
     mysqli_query($con, "INSERT INTO team (name, division, school) VALUES('$t','$d','$s')") 
     or die("Failed to add Team: ".mysqli_error($con));
     print "Team info added !";
-    header("location: dashboard.php");
+    header("location: dashboard.teams.php");
 ?>
